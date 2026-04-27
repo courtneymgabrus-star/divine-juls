@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Divine Juls — Yoga Teacher & Sound Healing | Atlanta, GA</title>
+  <meta name="description" content="Divine Juls — Doctor of Public Health, yoga teacher, and sound healer based in Atlanta, GA. Queer-affirming wellness rooted in research, led by spirit." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:    #D98997;
+      --wine:    #A64166;
+      --blush:   #D9ADC2;
+      --sage:    #4d7a3a;
+      --slate:   #878CA3;
+      --cream:   #FAF7F4;
+      --ink:     #3a3035;
+      --sig-gradient: linear-gradient(135deg, #D98997 0%, #D9ADC2 30%, #b8c9d6 55%, #6A8B53 85%, #878CA3 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.25rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(250,247,244,0.96);
+      box-shadow: 0 1px 20px rgba(166,65,102,0.08);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--wine);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex; gap: 2.2rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--slate);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--wine); }
+
+    .nav-cta {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--wine);
+      border: 1px solid var(--wine);
+      padding: 0.55rem 1.3rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--wine); color: #fff; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--wine); transition: 0.3s; }
+
+    /* ── HERO ────────────────────────────────────────── */
+    #home {
+      min-height: 100svh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 40% at 15% 20%, oklch(88% 0.08 350 / 0.5) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 45% at 85% 15%, oklch(88% 0.07 55 / 0.45) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 40% at 90% 75%, oklch(88% 0.09 155 / 0.45) 0%, transparent 58%),
+        radial-gradient(ellipse 50% 45% at 10% 80%, oklch(88% 0.08 220 / 0.4) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 35% at 50% 50%, oklch(90% 0.06 290 / 0.3) 0%, transparent 60%),
+        oklch(94% 0.015 60);
+    }
+    .hero-grain { display: none; }
+
+    /* ── RIPPLES ─────────────────────────────────────── */
+    .hero-ripples {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .hero-ripples svg {
+      width: 100%; height: 100%;
+      position: absolute; inset: 0;
+    }
+    .ripple-ring {
+      transform-origin: 50% 50%;
+      transform-box: fill-box;
+      fill: none;
+      stroke-width: 1;
+      opacity: 0;
+      animation: rippleOut 7s ease-out infinite;
+    }
+    .ripple-ring:nth-child(1) { stroke: var(--rose);  animation-delay: 0s; }
+    .ripple-ring:nth-child(2) { stroke: var(--sage);  animation-delay: 1.75s; }
+    .ripple-ring:nth-child(3) { stroke: var(--wine);  animation-delay: 3.5s; }
+    .ripple-ring:nth-child(4) { stroke: var(--blush); animation-delay: 5.25s; }
+    @keyframes rippleOut {
+      0%   { transform: scale(0.04); opacity: 0;    stroke-width: 3; }
+      15%  { opacity: 0.5; }
+      100% { transform: scale(1.5);  opacity: 0;    stroke-width: 0.3; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ripple-ring { animation: none; opacity: 0; }
+    }
+
+    /* ── BREATHING BOTANICALS ────────────────────────── */
+    .botanicals .leaf {
+      position: absolute;
+      transform-origin: bottom center;
+      animation: breathe 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .botanicals .leaf svg { display: block; }
+    .botanicals .leaf-1 { top: 3%;  left: 2%;  width: 160px; animation-delay: 0s; }
+    .botanicals .leaf-2 { top: 5%; right: 2%; width: 180px; animation-delay: 1.2s; }
+    .botanicals .leaf-3 { bottom: 8%; left: 4%; width: 150px; animation-delay: 2.4s; }
+    .botanicals .leaf-4 { bottom: 4%;  right: 3%; width: 170px; animation-delay: 0.6s; }
+    .botanicals .leaf-5 { top: 38%; left: 0%;  width: 120px;  animation-delay: 1.8s; }
+    .botanicals .leaf-6 { top: 44%; right: 0%; width: 130px; animation-delay: 3s; }
+    .botanicals .leaf-7 { top: 20%; left: 5%; width: 90px; animation-delay: 0.9s; opacity: 0.5; }
+    .botanicals .leaf-8 { top: 18%; right: 5%; width: 100px; animation-delay: 2s; opacity: 0.5; }
+    .botanicals .leaf-9 { bottom: 22%; left: 12%; width: 80px; animation-delay: 1.4s; opacity: 0.45; }
+    .botanicals .leaf-10 { bottom: 18%; right: 10%; width: 85px; animation-delay: 2.8s; opacity: 0.45; }
+    .botanicals .leaf-11 { top: 55%; left: 8%;   width: 70px;  animation-delay: 1.1s; opacity: 0.4; }
+    .botanicals .leaf-12 { top: 60%; right: 8%;  width: 75px;  animation-delay: 2.3s; opacity: 0.4; }
+    .botanicals .leaf-13 { top: 28%; left: 14%;  width: 60px;  animation-delay: 3.5s; opacity: 0.35; }
+    .botanicals .leaf-14 { top: 30%; right: 14%; width: 65px;  animation-delay: 0.4s; opacity: 0.35; }
+    .botanicals .leaf-15 { bottom: 32%; left: 20%; width: 55px; animation-delay: 1.7s; opacity: 0.3; }
+    .botanicals .leaf-16 { bottom: 35%; right: 18%; width: 58px; animation-delay: 2.6s; opacity: 0.3; }
+    @keyframes breathe {
+      0%, 100% { transform: scale(1)    rotate(-2deg); opacity: 0.5; }
+      50%       { transform: scale(1.08) rotate(2deg);  opacity: 0.72; }
+    }
+    .botanicals .leaf-2,
+    .botanicals .leaf-4,
+    .botanicals .leaf-6 { animation-name: breathe-flipped; }
+    @keyframes breathe-flipped {
+      0%, 100% { transform: scaleX(-1) scale(1)    rotate(2deg);  opacity: 0.5; }
+      50%       { transform: scaleX(-1) scale(1.08) rotate(-2deg); opacity: 0.72; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .botanicals .leaf { animation: none; opacity: 0.5; }
+    }
+    .hero-logo {
+      width: clamp(220px, 34vw, 340px);
+      margin-bottom: 1rem;
+      position: relative; z-index: 1;
+      animation: logoZoomIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes logoZoomIn {
+      from { opacity: 0; transform: scale(0.4) translateY(20px); filter: blur(8px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+    }
+    .hero-tagline {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      position: relative; z-index: 1;
+      animation: fadeUp 1.2s 0.15s ease both;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--wine);
+      margin-bottom: 1.4rem;
+      position: relative; z-index: 1;
+      animation: fadeUp 1.2s 0.3s ease both;
+    }
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--slate);
+      max-width: 460px;
+      letter-spacing: 0.04em;
+      margin: 0 auto 2.4rem;
+      position: relative; z-index: 1;
+      animation: fadeUp 1.2s 0.45s ease both;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      position: relative; z-index: 1;
+      animation: fadeUp 1.2s 0.6s ease both;
+    }
+    .btn-primary {
+      background: var(--sage);
+      color: #fff;
+      padding: 0.85rem 2.2rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: #3d6230; transform: translateY(-1px); }
+    .btn-ghost {
+      color: var(--wine);
+      border: 1px solid var(--wine);
+      padding: 0.85rem 2.2rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { background: var(--wine); color: #fff; }
+
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: var(--blush); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+      animation: fadeUp 1.2s 1s ease both;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--blush), transparent);
+      animation: scrollDrop 2s ease infinite;
+    }
+
+    /* ── DIVIDER ─────────────────────────────────────── */
+    .botanical-divider {
+      display: flex; align-items: center; justify-content: center;
+      padding: 0.5rem 0;
+      opacity: 0.45;
+    }
+    .botanical-divider svg { width: 320px; max-width: 80vw; }
+
+    /* ── SECTIONS ────────────────────────────────────── */
+    section { padding: 5.5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--sage);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--wine);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .section-body {
+      font-size: 0.95rem;
+      color: var(--slate);
+      max-width: 560px;
+      line-height: 1.85;
+    }
+
+    /* ── INTRO ───────────────────────────────────────── */
+    #intro { background: var(--cream); }
+    .intro-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .intro-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+      color: var(--wine);
+      line-height: 1.5;
+      border-left: 2px solid var(--blush);
+      padding-left: 1.8rem;
+    }
+
+    /* ── OFFERINGS ───────────────────────────────────── */
+    #offerings { background: #ebf0e5; }
+    .offerings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .offering-card {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 2.4rem 2rem;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+    .offering-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--sig-gradient);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .offering-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(166,65,102,0.1); }
+    .offering-card:hover::before { opacity: 1; }
+    .offering-icon {
+      width: 48px; height: 48px;
+      background: #d4e5cc;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.5rem;
+    }
+    .offering-icon svg { width: 22px; height: 22px; stroke: var(--wine); fill: none; }
+    .offering-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--sage);
+    }
+    .offering-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--wine);
+      line-height: 1.3;
+    }
+    .offering-desc {
+      font-size: 0.85rem;
+      color: var(--slate);
+      line-height: 1.75;
+    }
+    .offering-link {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--wine);
+      margin-top: auto;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .offering-link::after { content: '→'; }
+
+    /* ── YOGA ────────────────────────────────────────── */
+    .yoga-inner {
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center;
+    }
+    .yoga-visual { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+    .yoga-photo-frame {
+      width: 100%; max-width: 340px;
+      border-radius: 24px; overflow: hidden;
+      aspect-ratio: 3/4;
+      background: #d4e5cc;
+      position: relative;
+    }
+    .yoga-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .yoga-photo-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.8rem;
+    }
+    .yoga-cert-badge {
+      background: var(--cream);
+      border: 1px solid #d4e5cc;
+      border-radius: 100px;
+      padding: 0.6rem 1.4rem;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .yoga-cert-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--sage);
+      line-height: 1.2;
+    }
+    .yoga-cert-sub {
+      font-size: 0.58rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--slate); font-weight: 500;
+    }
+    @media (max-width: 768px) {
+      .yoga-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .yoga-photo-frame { max-width: 100%; aspect-ratio: 4/3; }
+    }
+
+    /* ── SOUND HEALING ───────────────────────────────── */
+    #sound-healing { background: var(--cream); }
+    .sound-inner {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center;
+    }
+    .sound-visual { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+    .bowl-stack { width: 100%; max-width: 340px; }
+    .bowl-stack svg { width: 100%; height: auto; }
+    .sound-photo-frame {
+      width: 100%; max-width: 340px;
+      border-radius: 20px; overflow: hidden;
+      aspect-ratio: 3/4;
+      box-shadow: 0 12px 40px rgba(166,65,102,0.12);
+    }
+    .sound-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+    .sound-details {
+      margin-top: 1.8rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      border-top: 1px solid #e4d8d4;
+      padding-top: 1.5rem;
+    }
+    .sound-detail-item {
+      display: flex; gap: 1rem; align-items: baseline;
+      font-size: 0.85rem; color: var(--slate);
+    }
+    .sound-detail-label {
+      font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 600; color: var(--sage); min-width: 72px;
+    }
+    @media (max-width: 768px) {
+      .sound-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .bowl-stack, .sound-photo-frame { max-width: 100%; }
+    }
+
+    /* ── ABOUT ───────────────────────────────────────── */
+    #about { background: var(--cream); }
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start;
+    }
+    .about-photo {
+      width: 100%;
+      min-height: 480px;
+      background: var(--blush);
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+    }
+    .about-photo img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .about-photo-placeholder {
+      position: absolute; inset: 0;
+      background: var(--sig-gradient);
+      opacity: 0.35;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.6rem;
+    }
+    .about-photo-placeholder span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--wine);
+      opacity: 0.7;
+    }
+    .about-credentials {
+      margin-top: 2.5rem;
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .credential {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.82rem; color: var(--slate); font-weight: 400;
+    }
+    .credential-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--sig-gradient);
+      flex-shrink: 0;
+    }
+    .about-pull-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.55rem;
+      color: var(--wine);
+      line-height: 1.5;
+      margin: 2rem 0;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--blush);
+      border-bottom: 1px solid var(--blush);
+    }
+
+    /* ── EVENTS ──────────────────────────────────────── */
+    #events { background: #ebf0e5; }
+    .events-grid {
+      margin-top: 3rem;
+      display: flex; flex-direction: column; gap: 1px;
+      border-radius: 16px; overflow: hidden;
+    }
+    .event-row {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 1.5rem;
+      padding: 1.8rem 2rem;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .event-row:hover { background: #fdf9f7; }
+    .event-date-box {
+      text-align: center;
+    }
+    .event-month {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+    }
+    .event-day {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      color: var(--wine);
+      line-height: 1;
+    }
+    .event-type-tag {
+      display: inline-block;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 0.2rem 0.7rem;
+      border-radius: 100px;
+      background: #d4e5cc;
+      color: var(--sage);
+      margin-bottom: 0.35rem;
+    }
+    .event-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--ink);
+    }
+    .event-location {
+      font-size: 0.78rem;
+      color: var(--slate);
+    }
+    .event-register {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--wine);
+      border: 1px solid var(--wine);
+      padding: 0.5rem 1.1rem;
+      border-radius: 100px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+    }
+    .event-register:hover { background: var(--wine); color: #fff; }
+
+    /* ── NEWSLETTER ──────────────────────────────────── */
+    #newsletter {
+      background: var(--wine);
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    #newsletter .section-label { color: var(--blush); }
+    #newsletter .section-title { color: #fff; margin: 0 auto 0.8rem; }
+    #newsletter .section-body { color: rgba(255,255,255,0.7); margin: 0 auto 2.5rem; }
+    .newsletter-form {
+      display: flex; gap: 0.8rem; max-width: 480px; margin: 0 auto;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .newsletter-input {
+      flex: 1; min-width: 220px;
+      padding: 0.9rem 1.4rem;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-input::placeholder { color: rgba(255,255,255,0.5); }
+    .newsletter-input:focus { border-color: rgba(255,255,255,0.6); }
+    .btn-light {
+      background: #fff;
+      color: var(--wine);
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-light:hover { opacity: 0.88; }
+
+    /* ── CONNECT ─────────────────────────────────────── */
+    #connect { background: var(--cream); }
+    .connect-inner {
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: start;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-label {
+      font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 500; color: var(--slate);
+    }
+    .form-input, .form-textarea, .form-select {
+      padding: 0.85rem 1.1rem;
+      border: 1px solid #e4d8d4;
+      border-radius: 10px;
+      background: #fdf9f7;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--rose); }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .connect-info { padding-top: 0.5rem; }
+    .connect-detail {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 1.6rem;
+    }
+    .connect-detail-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #d4e5cc; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .connect-detail-icon svg { width: 18px; height: 18px; stroke: var(--wine); fill: none; }
+    .connect-detail-text { font-size: 0.88rem; color: var(--slate); line-height: 1.6; }
+    .connect-detail-text strong { display: block; color: var(--ink); font-weight: 500; margin-bottom: 0.1rem; }
+    .social-row { display: flex; gap: 0.8rem; margin-top: 2rem; flex-wrap: wrap; }
+    .social-link {
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 1px solid #e4d8d4;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--wine); text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .social-link:hover { background: var(--blush); border-color: var(--blush); }
+    .social-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+    }
+    footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    footer a:hover { color: var(--blush); }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.6rem;
+      color: rgba(255,255,255,0.75);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .footer-tagline { color: var(--sage); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .footer-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+
+    /* ── ANIMATIONS ──────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollDrop {
+      0%, 100% { opacity: 0.5; transform: scaleY(1); }
+      50%       { opacity: 1; transform: scaleY(1.15); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, [style*="animation"] { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ── MOBILE ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.4rem; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu {
+        position: fixed; inset: 0; z-index: 90;
+        background: rgba(250,247,244,0.97);
+        backdrop-filter: blur(16px);
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 2.2rem;
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s;
+      }
+      .mobile-menu.open { opacity: 1; pointer-events: all; }
+      .mobile-menu a {
+        font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+        color: var(--wine); text-decoration: none; font-weight: 500;
+      }
+      .intro-inner, .about-inner, .connect-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-photo { max-width: 280px; margin: 0 auto; }
+      .event-row { grid-template-columns: 60px 1fr; }
+      .event-register { display: none; }
+      section { padding: 4rem 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="main-nav" role="navigation" aria-label="Main navigation">
+    <a href="#home" class="nav-logo">Divine Juls</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#offerings">Offerings</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#connect">Connect</a></li>
+    </ul>
+    <a href="#connect" class="nav-cta">Book a Session</a>
+    <button class="hamburger" aria-label="Open menu" id="hamburger-btn">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#offerings" class="mobile-link">Offerings</a>
+    <a href="#events" class="mobile-link">Events</a>
+    <a href="#connect" class="mobile-link">Connect</a>
+    <a href="#connect" class="mobile-link" style="color: var(--sage);">Book a Session</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="home" aria-label="Hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-grain" aria-hidden="true"></div>
+    <div class="botanicals" aria-hidden="true">
+      <!-- leaf 1: large tropical -->
+      <div class="leaf leaf-1">
+        <svg viewBox="0 0 100 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 155 C50 155 10 100 18 55 C26 10 50 5 50 5 C50 5 74 10 82 55 C90 100 50 155 50 155Z" fill="#6A8B53" opacity="0.45"/>
+          <line x1="50" y1="155" x2="50" y2="5" stroke="#4d7a3a" stroke-width="1.2" opacity="0.6"/>
+          <path d="M50 120 Q30 100 22 75" stroke="#4d7a3a" stroke-width="0.8" fill="none" opacity="0.5"/>
+          <path d="M50 120 Q70 100 78 75" stroke="#4d7a3a" stroke-width="0.8" fill="none" opacity="0.5"/>
+          <path d="M50 90 Q28 72 24 50" stroke="#4d7a3a" stroke-width="0.7" fill="none" opacity="0.4"/>
+          <path d="M50 90 Q72 72 76 50" stroke="#4d7a3a" stroke-width="0.7" fill="none" opacity="0.4"/>
+        </svg>
+      </div>
+      <!-- leaf 2: slender -->
+      <div class="leaf leaf-2">
+        <svg viewBox="0 0 80 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 175 C40 175 8 110 14 58 C20 6 40 2 40 2 C40 2 60 6 66 58 C72 110 40 175 40 175Z" fill="#D9ADC2" opacity="0.4"/>
+          <line x1="40" y1="175" x2="40" y2="2" stroke="#A64166" stroke-width="1" opacity="0.5"/>
+          <path d="M40 130 Q20 108 14 82" stroke="#A64166" stroke-width="0.7" fill="none" opacity="0.45"/>
+          <path d="M40 130 Q60 108 66 82" stroke="#A64166" stroke-width="0.7" fill="none" opacity="0.45"/>
+        </svg>
+      </div>
+      <!-- leaf 3: round leaf -->
+      <div class="leaf leaf-3">
+        <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60 115 C20 90 5 55 20 25 C35 -5 85 -5 100 25 C115 55 100 90 60 115Z" fill="#6A8B53" opacity="0.38"/>
+          <line x1="60" y1="115" x2="55" y2="15" stroke="#4d7a3a" stroke-width="1.1" opacity="0.55"/>
+          <path d="M57 80 Q30 65 25 42" stroke="#4d7a3a" stroke-width="0.8" fill="none" opacity="0.4"/>
+          <path d="M58 80 Q82 65 88 45" stroke="#4d7a3a" stroke-width="0.8" fill="none" opacity="0.4"/>
+        </svg>
+      </div>
+      <!-- leaf 4: long drape -->
+      <div class="leaf leaf-4">
+        <svg viewBox="0 0 90 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M45 165 C45 165 12 108 16 60 C20 12 45 4 45 4 C45 4 70 12 74 60 C78 108 45 165 45 165Z" fill="#D98997" opacity="0.35"/>
+          <line x1="45" y1="165" x2="45" y2="4" stroke="#A64166" stroke-width="1" opacity="0.5"/>
+          <path d="M45 120 Q24 100 18 72" stroke="#A64166" stroke-width="0.7" fill="none" opacity="0.4"/>
+          <path d="M45 120 Q66 100 72 72" stroke="#A64166" stroke-width="0.7" fill="none" opacity="0.4"/>
+          <path d="M45 80 Q26 62 22 42" stroke="#A64166" stroke-width="0.6" fill="none" opacity="0.35"/>
+          <path d="M45 80 Q64 62 68 42" stroke="#A64166" stroke-width="0.6" fill="none" opacity="0.35"/>
+        </svg>
+      </div>
+      <!-- leaf 5: small side sprig -->
+      <div class="leaf leaf-5">
+        <svg viewBox="0 0 70 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M35 125 C35 125 8 80 12 46 C16 12 35 5 35 5 C35 5 54 12 58 46 C62 80 35 125 35 125Z" fill="#6A8B53" opacity="0.42"/>
+          <line x1="35" y1="125" x2="35" y2="5" stroke="#4d7a3a" stroke-width="1" opacity="0.55"/>
+          <path d="M35 90 Q18 74 14 54" stroke="#4d7a3a" stroke-width="0.7" fill="none" opacity="0.4"/>
+          <path d="M35 90 Q52 74 56 54" stroke="#4d7a3a" stroke-width="0.7" fill="none" opacity="0.4"/>
+        </svg>
+      </div>
+      <!-- leaf 6: blush sprig -->
+      <div class="leaf leaf-6">
+        <svg viewBox="0 0 85 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M42 145 C42 145 10 95 15 52 C20 10 42 4 42 4 C42 4 64 10 69 52 C74 95 42 145 42 145Z" fill="#D9ADC2" opacity="0.38"/>
+          <line x1="42" y1="145" x2="42" y2="4" stroke="#A64166" stroke-width="1" opacity="0.5"/>
+          <path d="M42 105 Q22 88 17 64" stroke="#A64166" stroke-width="0.7" fill="none" opacity="0.42"/>
+          <path d="M42 105 Q62 88 67 64" stroke="#A64166" stroke-width="0.7" fill="none" opacity="0.42"/>
+        </svg>
+      </div>
+      <!-- leaf 7: small sage -->
+      <div class="leaf leaf-7">
+        <svg viewBox="0 0 70 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M35 115 C35 115 8 72 12 42 C16 12 35 5 35 5 C35 5 54 12 58 42 C62 72 35 115 35 115Z" fill="#6A8B53" opacity="0.4"/>
+          <line x1="35" y1="115" x2="35" y2="5" stroke="#4d7a3a" stroke-width="1" opacity="0.5"/>
+          <path d="M35 80 Q18 64 14 46" stroke="#4d7a3a" stroke-width="0.7" fill="none" opacity="0.4"/>
+          <path d="M35 80 Q52 64 56 46" stroke="#4d7a3a" stroke-width="0.7" fill="none" opacity="0.4"/>
+        </svg>
+      </div>
+      <!-- leaf 8: small rose -->
+      <div class="leaf leaf-8">
+        <svg viewBox="0 0 75 125" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M37 120 C37 120 9 76 13 44 C17 12 37 5 37 5 C37 5 57 12 61 44 C65 76 37 120 37 120Z" fill="#D98997" opacity="0.36"/>
+          <line x1="37" y1="120" x2="37" y2="5" stroke="#A64166" stroke-width="1" opacity="0.48"/>
+          <path d="M37 84 Q19 68 15 48" stroke="#A64166" stroke-width="0.7" fill="none" opacity="0.38"/>
+          <path d="M37 84 Q55 68 59 48" stroke="#A64166" stroke-width="0.7" fill="none" opacity="0.38"/>
+        </svg>
+      </div>
+      <!-- leaf 9: tiny sage lower left -->
+      <div class="leaf leaf-9">
+        <svg viewBox="0 0 60 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 95 C30 95 7 62 10 36 C13 10 30 4 30 4 C30 4 47 10 50 36 C53 62 30 95 30 95Z" fill="#6A8B53" opacity="0.38"/>
+          <line x1="30" y1="95" x2="30" y2="4" stroke="#4d7a3a" stroke-width="0.9" opacity="0.48"/>
+        </svg>
+      </div>
+      <!-- leaf 10: tiny blush lower right -->
+      <div class="leaf leaf-10">
+        <svg viewBox="0 0 65 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 100 C32 100 8 65 11 38 C14 11 32 4 32 4 C32 4 50 11 53 38 C56 65 32 100 32 100Z" fill="#D9ADC2" opacity="0.36"/>
+          <line x1="32" y1="100" x2="32" y2="4" stroke="#A64166" stroke-width="0.9" opacity="0.45"/>
+        </svg>
+      </div>
+      <!-- leaf 11: mid-left sage -->
+      <div class="leaf leaf-11">
+        <svg viewBox="0 0 60 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 95 C30 95 7 60 10 35 C13 10 30 4 30 4 C30 4 47 10 50 35 C53 60 30 95 30 95Z" fill="#6A8B53" opacity="0.4"/>
+          <line x1="30" y1="95" x2="30" y2="4" stroke="#4d7a3a" stroke-width="0.9" opacity="0.5"/>
+        </svg>
+      </div>
+      <!-- leaf 12: mid-right rose -->
+      <div class="leaf leaf-12">
+        <svg viewBox="0 0 65 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 100 C32 100 8 63 11 37 C14 11 32 4 32 4 C32 4 50 11 53 37 C56 63 32 100 32 100Z" fill="#D98997" opacity="0.38"/>
+          <line x1="32" y1="100" x2="32" y2="4" stroke="#A64166" stroke-width="0.9" opacity="0.48"/>
+        </svg>
+      </div>
+      <!-- leaf 13: inner left blush -->
+      <div class="leaf leaf-13">
+        <svg viewBox="0 0 55 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M27 86 C27 86 6 55 9 32 C12 9 27 3 27 3 C27 3 42 9 45 32 C48 55 27 86 27 86Z" fill="#D9ADC2" opacity="0.35"/>
+          <line x1="27" y1="86" x2="27" y2="3" stroke="#A64166" stroke-width="0.8" opacity="0.4"/>
+        </svg>
+      </div>
+      <!-- leaf 14: inner right sage -->
+      <div class="leaf leaf-14">
+        <svg viewBox="0 0 58 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M29 90 C29 90 7 57 10 33 C13 9 29 3 29 3 C29 3 45 9 48 33 C51 57 29 90 29 90Z" fill="#6A8B53" opacity="0.35"/>
+          <line x1="29" y1="90" x2="29" y2="3" stroke="#4d7a3a" stroke-width="0.8" opacity="0.42"/>
+        </svg>
+      </div>
+      <!-- leaf 15: deep inner left rose -->
+      <div class="leaf leaf-15">
+        <svg viewBox="0 0 50 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25 78 C25 78 6 50 8 29 C10 8 25 3 25 3 C25 3 40 8 42 29 C44 50 25 78 25 78Z" fill="#D98997" opacity="0.3"/>
+          <line x1="25" y1="78" x2="25" y2="3" stroke="#A64166" stroke-width="0.7" opacity="0.35"/>
+        </svg>
+      </div>
+      <!-- leaf 16: deep inner right blush -->
+      <div class="leaf leaf-16">
+        <svg viewBox="0 0 52 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M26 80 C26 80 6 52 9 30 C12 8 26 3 26 3 C26 3 40 8 43 30 C46 52 26 80 26 80Z" fill="#D9ADC2" opacity="0.3"/>
+          <line x1="26" y1="80" x2="26" y2="3" stroke="#A64166" stroke-width="0.7" opacity="0.35"/>
+        </svg>
+      </div>
+    </div>
+    <img src="assets/logo.png" alt="Divine Juls logo — botanical sacred geometry mark" class="hero-logo" />
+    <p class="hero-tagline">yoga teacher &amp; sound healing · atlanta, georgia</p>
+    <h1 class="hero-title">rooted in research.<br />led by spirit.</h1>
+    <p class="hero-sub">a queer-affirming sanctuary where public health expertise meets somatic and sacred practice.</p>
+    <div class="hero-actions">
+      <a href="#offerings" class="btn-primary">Explore Offerings</a>
+      <a href="#about" class="btn-ghost">Meet Juls</a>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <!-- BOTANICAL DIVIDER -->
+  <div class="botanical-divider" aria-hidden="true">
+    <svg viewBox="0 0 320 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="20" x2="110" y2="20" stroke="#D9ADC2" stroke-width="0.8"/>
+      <path d="M130 20 Q140 8 150 20 Q160 32 170 20 Q180 8 190 20" stroke="#6A8B53" stroke-width="1.2" fill="none"/>
+      <circle cx="160" cy="20" r="2.5" fill="#D98997"/>
+      <path d="M140 20 Q145 12 150 8 M170 20 Q175 12 180 8" stroke="#6A8B53" stroke-width="0.8" fill="none"/>
+      <line x1="210" y1="20" x2="320" y2="20" stroke="#D9ADC2" stroke-width="0.8"/>
+    </svg>
+  </div>
+
+  <!-- INTRO -->
+  <section id="intro" aria-labelledby="intro-heading">
+    <div class="container">
+      <div class="intro-inner">
+        <div>
+          <p class="section-label reveal">Welcome</p>
+          <h2 id="intro-heading" class="section-title reveal reveal-delay-1">a place to land,<br />breathe, and return<br />to yourself.</h2>
+          <p class="section-body reveal reveal-delay-2">
+            Divine Juls is a Doctor of Public Health, registered yoga teacher, and sound healer devoted to building bridges between evidence-based wellness and embodied, community-rooted healing — especially for and with queer and BIPOC communities in Atlanta and beyond.
+          </p>
+          <p class="section-body reveal reveal-delay-3" style="margin-top: 1rem;">
+            Every class, session, and gathering is designed with intention — for you to arrive as you are and leave a little more whole.
+          </p>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <blockquote class="intro-quote">
+            "the body holds the answers science is only beginning to ask."
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFERINGS PREVIEW -->
+  <section id="offerings" aria-labelledby="offerings-heading">
+    <div class="container">
+      <p class="section-label reveal">What I Offer</p>
+      <h2 id="offerings-heading" class="section-title reveal reveal-delay-1">practices for the<br />whole person.</h2>
+      <div class="offerings-grid">
+
+        <a href="#yoga" class="offering-card reveal reveal-delay-1">
+          <div class="offering-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path d="M12 3c0 0-4 4-4 9s4 9 4 9 4-4 4-9-4-9-4-9z"/><path d="M12 3v18M3 12h18"/></svg>
+          </div>
+          <span class="offering-label">Practice</span>
+          <h3 class="offering-title">Yoga</h3>
+          <p class="offering-desc">Grounding flows and intentional movement for all bodies — trauma-informed, queer-affirming, and accessible.</p>
+          <span class="offering-link">Learn more</span>
+        </a>
+
+        <a href="#sound" class="offering-card reveal reveal-delay-2">
+          <div class="offering-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <span class="offering-label">Healing</span>
+          <h3 class="offering-title">Sound Healing</h3>
+          <p class="offering-desc">Crystal singing bowls and vibrational medicine to quiet the nervous system and open the heart.</p>
+          <span class="offering-link">Learn more</span>
+        </a>
+
+        <a href="#events-section" class="offering-card reveal reveal-delay-3">
+          <div class="offering-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <span class="offering-label">Gathering</span>
+          <h3 class="offering-title">Intentional Events</h3>
+          <p class="offering-desc">Retreats, ceremonies, workshops, and sacred gatherings designed to nourish community and connection.</p>
+          <span class="offering-link">Learn more</span>
+        </a>
+
+        <a href="#research" class="offering-card reveal reveal-delay-4">
+          <div class="offering-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <span class="offering-label">Research</span>
+          <h3 class="offering-title">Public Health &amp; Consulting</h3>
+          <p class="offering-desc">Speaking engagements, partnerships, and community health research with equity at the center.</p>
+          <span class="offering-link">Learn more</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="about-inner">
+        <div>
+          <div class="about-photo" role="img" aria-label="Divine Juls with crystal singing bowls">
+            <img src="assets/juls-photo.jpeg?v=2" alt="Divine Juls seated on a deck surrounded by colorful crystal singing bowls" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;" />
+          </div>
+          <div class="about-credentials reveal">
+            <div class="credential"><span class="credential-dot"></span> Doctor of Public Health (DrPH)</div>
+            <div class="credential"><span class="credential-dot"></span> Registered Yoga Teacher (RYT-200)</div>
+            <div class="credential"><span class="credential-dot"></span> Certified Sound Healing Practitioner</div>
+            <div class="credential"><span class="credential-dot"></span> Community Health Researcher &amp; Speaker</div>
+          </div>
+        </div>
+        <div>
+          <p class="section-label reveal">About Juls</p>
+          <h2 id="about-heading" class="section-title reveal reveal-delay-1">the science of healing<br />meets the wisdom of the body.</h2>
+          <blockquote class="about-pull-quote reveal reveal-delay-2">
+            "I came to this work because I needed it. I stayed because my community needed it too."
+          </blockquote>
+          <p class="section-body reveal reveal-delay-2">
+            As a queer woman with a doctorate in public health, Julianna spent years studying health disparities on paper before realizing that the most transformative healing happens in the body — in breath, in sound, in intentional community.
+          </p>
+          <p class="section-body reveal reveal-delay-3" style="margin-top: 1rem;">
+            Based in Atlanta, Georgia, she weaves together evidence-based public health practice with yoga, sound healing, and ritual — creating spaces where LGBTQIA+ folks and all who seek intentional, grounded healing can finally feel at home.
+          </p>
+          <a href="#connect" class="btn-primary reveal reveal-delay-3" style="display: inline-block; margin-top: 2rem;">Work with Juls</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTANICAL DIVIDER -->
+  <div class="botanical-divider" aria-hidden="true" style="transform: scaleX(-1);">
+    <svg viewBox="0 0 320 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="20" x2="110" y2="20" stroke="#D9ADC2" stroke-width="0.8"/>
+      <path d="M130 20 Q140 8 150 20 Q160 32 170 20 Q180 8 190 20" stroke="#6A8B53" stroke-width="1.2" fill="none"/>
+      <circle cx="160" cy="20" r="2.5" fill="#D98997"/>
+      <path d="M140 20 Q145 12 150 8 M170 20 Q175 12 180 8" stroke="#6A8B53" stroke-width="0.8" fill="none"/>
+      <line x1="210" y1="20" x2="320" y2="20" stroke="#D9ADC2" stroke-width="0.8"/>
+    </svg>
+  </div>
+
+  <!-- YOGA -->
+  <section id="yoga" aria-labelledby="yoga-heading" style="background: #ebf0e5;">
+    <div class="container">
+      <div class="yoga-inner">
+        <div class="yoga-text">
+          <p class="section-label reveal">Yoga</p>
+          <h2 id="yoga-heading" class="section-title reveal reveal-delay-1">where she began —<br />and keeps returning.</h2>
+          <p class="section-body reveal reveal-delay-2">
+            Julianna is a 200-hour certified yoga teacher devoted to creating inclusive, trauma-informed, safe spaces for others to turn inward and connect their mind, body, and breath.
+          </p>
+          <p class="section-body reveal reveal-delay-3" style="margin-top: 1rem;">
+            Drawing from yin and restorative traditions, her classes offer space for grounding, softness, choice, and reflection — no prior experience needed, no performance required.
+          </p>
+          <p class="section-body reveal reveal-delay-3" style="margin-top: 1rem;">
+            Yoga came first. It's the foundation everything else is rooted in.
+          </p>
+          <div class="sound-details reveal reveal-delay-3">
+            <div class="sound-detail-item">
+              <span class="sound-detail-label">Style</span>
+              <span>Yin · Restorative · Trauma-informed</span>
+            </div>
+            <div class="sound-detail-item">
+              <span class="sound-detail-label">Format</span>
+              <span>Private sessions · group classes · online</span>
+            </div>
+            <div class="sound-detail-item">
+              <span class="sound-detail-label">For</span>
+              <span>All bodies, all levels · queer-affirming</span>
+            </div>
+          </div>
+          <a href="#connect" class="btn-primary reveal reveal-delay-4" style="display:inline-block; margin-top: 2rem;">Book a Class</a>
+        </div>
+        <div class="yoga-visual reveal reveal-delay-2">
+          <div class="yoga-photo-frame">
+            <img src="assets/juls-yoga.jpeg" alt="Julianna in a flowing blue dress on a sunlit lawn with mountains rising behind her" style="object-position: center 25%;" />
+          </div>
+          <div class="yoga-cert-badge">
+            <span class="yoga-cert-label">RYT-200</span>
+            <span class="yoga-cert-sub">Registered Yoga Teacher</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOUND HEALING -->
+  <section id="sound-healing" aria-labelledby="sound-heading">
+    <div class="container">
+      <div class="sound-inner">
+        <div class="sound-visual reveal">
+          <div class="bowl-stack" aria-hidden="true">
+            <svg viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <ellipse cx="170" cy="230" rx="130" ry="18" fill="url(#bowlGlow)" opacity="0.35"/>
+              <ellipse cx="170" cy="200" rx="90" ry="22" fill="#D98997" opacity="0.18"/>
+              <path d="M80 200 Q170 240 260 200 L250 185 Q170 222 90 185 Z" fill="#D98997" opacity="0.55"/>
+              <ellipse cx="170" cy="185" rx="80" ry="16" fill="#D98997" opacity="0.25"/>
+              <ellipse cx="170" cy="185" rx="80" ry="16" stroke="#A64166" stroke-width="1.2" opacity="0.5"/>
+              <ellipse cx="105" cy="182" rx="52" ry="12" fill="#6A8B53" opacity="0.18"/>
+              <path d="M53 182 Q105 210 157 182 L150 172 Q105 198 60 172 Z" fill="#6A8B53" opacity="0.5"/>
+              <ellipse cx="105" cy="172" rx="47" ry="10" fill="#6A8B53" opacity="0.22"/>
+              <ellipse cx="105" cy="172" rx="47" ry="10" stroke="#4d7a3a" stroke-width="1" opacity="0.5"/>
+              <ellipse cx="238" cy="178" rx="42" ry="10" fill="#D9ADC2" opacity="0.18"/>
+              <path d="M196 178 Q238 202 280 178 L274 169 Q238 191 202 169 Z" fill="#D9ADC2" opacity="0.5"/>
+              <ellipse cx="238" cy="169" rx="38" ry="9" fill="#D9ADC2" opacity="0.22"/>
+              <ellipse cx="238" cy="169" rx="38" ry="9" stroke="#A64166" stroke-width="0.9" opacity="0.45"/>
+              <line x1="220" y1="130" x2="170" y2="185" stroke="#A64166" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+              <circle cx="224" cy="126" r="8" fill="#D98997" opacity="0.6"/>
+              <ellipse cx="170" cy="185" rx="95" ry="20" stroke="#D98997" stroke-width="0.8" opacity="0.22" stroke-dasharray="4 4"/>
+              <ellipse cx="170" cy="185" rx="115" ry="26" stroke="#6A8B53" stroke-width="0.7" opacity="0.18" stroke-dasharray="4 6"/>
+              <defs>
+                <radialGradient id="bowlGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#D98997"/>
+                  <stop offset="100%" stop-color="transparent"/>
+                </radialGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="sound-photo-frame">
+            <img src="assets/juls-bowls.jpeg" alt="Juls' colorful crystal singing bowls arranged on a wood floor in a green-walled studio" />
+          </div>
+        </div>
+        <div class="sound-text">
+          <p class="section-label reveal">Sound Healing</p>
+          <h2 id="sound-heading" class="section-title reveal reveal-delay-1">let the bowls<br />do the talking.</h2>
+          <p class="section-body reveal reveal-delay-2">
+            Crystal singing bowls produce pure tones that resonate with the body's own frequency — quieting the nervous system, releasing held tension, and creating space for deep rest and integration.
+          </p>
+          <p class="section-body reveal reveal-delay-3" style="margin-top: 1rem;">
+            Each bowl is tuned to a different note and chakra. Together they create a full-body sound bath experience — you don't listen to it so much as you <em>become</em> it.
+          </p>
+          <div class="sound-details reveal reveal-delay-3">
+            <div class="sound-detail-item">
+              <span class="sound-detail-label">Format</span>
+              <span>Private sessions · group sound baths · retreats</span>
+            </div>
+            <div class="sound-detail-item">
+              <span class="sound-detail-label">Length</span>
+              <span>45 – 90 minutes</span>
+            </div>
+            <div class="sound-detail-item">
+              <span class="sound-detail-label">Location</span>
+              <span>Atlanta, Georgia · virtual available</span>
+            </div>
+          </div>
+          <a href="#connect" class="btn-primary reveal reveal-delay-4" style="display:inline-block; margin-top: 2rem;">Book a Sound Bath</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="events" aria-labelledby="events-heading">
+    <div class="container">
+      <p class="section-label reveal">Upcoming</p>
+      <h2 id="events-heading" class="section-title reveal reveal-delay-1">gather with us.</h2>
+      <div class="events-grid reveal reveal-delay-2">
+
+        <div class="event-row">
+          <div class="event-date-box">
+            <div class="event-month">May</div>
+            <div class="event-day">10</div>
+          </div>
+          <div>
+            <span class="event-type-tag">Sound Bath</span>
+            <div class="event-title">Full Moon Sound Bath &amp; Release</div>
+            <div class="event-location">Atlanta, GA · Location shared upon registration</div>
+          </div>
+          <a href="#connect" class="event-register">Register</a>
+        </div>
+
+        <div class="event-row">
+          <div class="event-date-box">
+            <div class="event-month">May</div>
+            <div class="event-day">18</div>
+          </div>
+          <div>
+            <span class="event-type-tag">Yoga</span>
+            <div class="event-title">Grounding Flow: A Queer Yoga Circle</div>
+            <div class="event-location">Online via Zoom · All levels welcome</div>
+          </div>
+          <a href="#connect" class="event-register">Register</a>
+        </div>
+
+        <div class="event-row">
+          <div class="event-date-box">
+            <div class="event-month">Jun</div>
+            <div class="event-day">7</div>
+          </div>
+          <div>
+            <span class="event-type-tag">Retreat</span>
+            <div class="event-title">Rooted: A One-Day Wellness Retreat</div>
+            <div class="event-location">Atlanta Metro Area · Limited spots</div>
+          </div>
+          <a href="#connect" class="event-register">Register</a>
+        </div>
+
+        <div class="event-row">
+          <div class="event-date-box">
+            <div class="event-month">Jun</div>
+            <div class="event-day">21</div>
+          </div>
+          <div>
+            <span class="event-type-tag">Workshop</span>
+            <div class="event-title">Summer Solstice Sound &amp; Movement</div>
+            <div class="event-location">Atlanta, GA · Outdoor ceremony</div>
+          </div>
+          <a href="#connect" class="event-register">Register</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter" aria-labelledby="newsletter-heading">
+    <div class="container">
+      <p class="section-label">Stay Connected</p>
+      <h2 id="newsletter-heading" class="section-title" style="max-width: 440px;">letters from the practice.</h2>
+      <p class="section-body">Monthly reflections on healing, community, and the intersections of public health and spirit. No spam — only intention.</p>
+      <form class="newsletter-form" onsubmit="handleNewsletter(event)" novalidate>
+        <input type="email" class="newsletter-input" placeholder="your@email.com" aria-label="Email address" required />
+        <button type="submit" class="btn-light">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section id="connect" aria-labelledby="connect-heading">
+    <div class="container">
+      <p class="section-label reveal">Connect</p>
+      <h2 id="connect-heading" class="section-title reveal reveal-delay-1">let's begin.</h2>
+      <div class="connect-inner">
+        <form class="contact-form reveal reveal-delay-2" onsubmit="handleContact(event)" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="name">Name</label>
+            <input id="name" type="text" class="form-input" placeholder="your full name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input id="email" type="email" class="form-input" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="interest">I'm interested in</label>
+            <select id="interest" class="form-select">
+              <option value="">— select one —</option>
+              <option>Yoga Classes</option>
+              <option>Sound Healing</option>
+              <option>Event Planning</option>
+              <option>Public Health Research / Consulting</option>
+              <option>A Community Event</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea id="message" class="form-textarea" placeholder="share whatever feels right…"></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="align-self: flex-start;">Send Message</button>
+          <p id="form-success" style="display:none; color: var(--sage); font-size: 0.85rem; margin-top: 0.5rem;">✓ Received — Juls will be in touch soon.</p>
+        </form>
+        <div class="connect-info reveal reveal-delay-3">
+          <div class="connect-detail">
+            <div class="connect-detail-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </div>
+            <div class="connect-detail-text">
+              <strong>Location</strong>
+              Atlanta, Georgia<br />
+              <span style="font-size:0.78rem">Sessions by appointment · location varies</span>
+            </div>
+          </div>
+          <div class="connect-detail">
+            <div class="connect-detail-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 6 10-6"/></svg>
+            </div>
+            <div class="connect-detail-text">
+              <strong>Email</strong>
+              hello@divinejuls.com
+            </div>
+          </div>
+          <div class="connect-detail">
+            <div class="connect-detail-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="var(--wine)" stroke="none"/></svg>
+            </div>
+            <div class="connect-detail-text">
+              <strong>Instagram</strong>
+              @divinejuls
+            </div>
+          </div>
+          <div class="social-row" aria-label="Social media links">
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="var(--wine)" stroke="none"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Divine Juls</span>
+    <p class="footer-tagline">Yoga Teacher &amp; Sound Healing · Atlanta, GA</p>
+    <nav class="footer-links" aria-label="Footer links">
+      <a href="#about">About</a>
+      <a href="#offerings">Offerings</a>
+      <a href="#events">Events</a>
+      <a href="#connect">Connect</a>
+    </nav>
+    <p>© 2026 Divine Juls · All rights reserved · Made with intention in Atlanta, Georgia</p>
+  </footer>
+
+  <script>
+    // Sticky nav
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Hamburger
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Newsletter
+    function handleNewsletter(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.textContent = '✓ You\'re in!';
+      btn.disabled = true;
+    }
+
+    // Contact form
+    function handleContact(e) {
+      e.preventDefault();
+      document.getElementById('form-success').style.display = 'block';
+      e.target.querySelector('button[type="submit"]').textContent = 'Sent ✓';
+      e.target.querySelector('button[type="submit"]').disabled = true;
+    }
+  </script>
+</body>
+</html>
